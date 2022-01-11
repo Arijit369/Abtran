@@ -1,9 +1,9 @@
 
 export default function AdminNavbar({ showSidebar, setShowSidebar }) {
-    
+
 
     return (
-        <nav className="head text-white bg-opacity-85 md:ml-64 py-2 md:hidden px-3 ">
+        <nav className="head sticky top-16  z-20 lg:container text-white bg-opacity-90 md:ml-64   md:hidden px-3 ">
             <div className="container max-w-full mx-auto flex items-center justify-between md:pr-8 md:pl-10">
                 <div className="md:hidden">
                     <button
@@ -15,14 +15,13 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
                         ripple="light"
                         onClick={() => setShowSidebar('left-0')}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-</svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
                     </button>
                     <div
-                        className={`absolute top-24 md:hidden ${
-                            showSidebar === 'left-0' ? 'left-64' : '-left-64'
-                        } z-50 transition-all duration-300`}
+                        className={`absolute top-0  md:hidden ${showSidebar === 'left-0' ? 'left-64' : '-left-64'
+                            } z-50 transition-all duration-300`}
                     >
                         <button
                             color="transparent"
@@ -33,20 +32,20 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
                             ripple="light"
                             onClick={() => setShowSidebar('-left-64')}
                         >
-                           <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-100 font-bold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
                         </button>
                     </div>
                 </div>
 
                 <div className="flex justify-between items-center w-full">
                     <h4 className="uppercase text-gray-100 text-lg font-serif tracking-wider mt-1 mx-10">
-                       
+
                     </h4>
 
                     <div className="flex">
-                   
+
                     </div>
                 </div>
             </div>

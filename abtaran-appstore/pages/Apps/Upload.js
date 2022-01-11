@@ -4,11 +4,11 @@ import Fade from 'react-reveal/Fade'
 import Slide from 'react-reveal/Slide'
 
 import { db, serverTimestamp, storage } from '../../firebase'
-import { useRouter } from 'next/router'
+
 
 export default function Upload({ user }) {
   const [alert, setalert] = useState('')
-  const router = useRouter()
+
   // varialbles for app upload
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState('');
@@ -30,6 +30,7 @@ export default function Upload({ user }) {
   const [desc, setdesc] = useState('')
   const [category, setcategory] = useState('')
   const [privacy, setprivacy] = useState('')
+  const [Marketing, setMarketing] = useState('')
   // variables for desc
   //  app upload starts
   const handelChange = (e) => {
@@ -141,7 +142,7 @@ export default function Upload({ user }) {
   // image2 upload ends
   // upload appps with des c
   const SubmitDetails = async () => {
-    if (!category || !appname || !desc || !privacy || !version) {
+    if (!category || !appname || !desc || !privacy || !version || !Marketing) {
       setalert('Please Enter All Fields')
 
     } else {
@@ -157,6 +158,7 @@ export default function Upload({ user }) {
           Image2: url2,
           Version: version,
           Name: user.displayName,
+          Marketing: Marketing,
           Userid: user.uid,
 
           UpdatedAt: serverTimestamp()
@@ -164,7 +166,7 @@ export default function Upload({ user }) {
         //   M.toast({html: 'Blog Created',classes:"green"}) 
         console.log("app uploaded")
         window.alert(`dear ${user.displayName} app uploaded to abtaran`)
-       
+        window.location.reload(false);
       } catch (err) {
 
         setalert(`dear ${user.displayName} upload failed`)
@@ -181,15 +183,15 @@ export default function Upload({ user }) {
 
   return (
     <div>
-     
-     <Slide top><div className="container text-white bg-gradient-to-r from-[#06202a] to-blue-400   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
+
+<Slide top><div className="lg:container lg:sticky lg:top-28  z-20 md:container text-white nv bg-opacity-90   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
       <Fade>
         <div className=" container p-2 ">
           <h1 className="text-gray-800 font-bold font-serif italic text-3xl text-center">Upload App From Here</h1>
           {/* form */}
-          <div className="  flex justify-center lg:mt-5 my-1  ">
+          <div className="  flex justify-center lg:mt-5   ">
 
-           
+
             <Slide right>
               <div className=" p-3 mx-1 lg:w-3/4  pt-7 rounded-3xl shadow-xl  ">
 
@@ -202,8 +204,8 @@ export default function Upload({ user }) {
                   <div className="m-1 border-b border-green-900 p-1">
                     <progress value={progress} max="100"> </progress>
 
-                    <label className="block text-gray-700 text-sm font-bold my-1 mx-1 py-2 px-1 " >
-                      Upload App
+                    <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif" >
+                      Upload App Apk
                     </label>
                     <input onChange={handelChange} className="appearance-none bg-transparent border-none  text-gray-900 mr-3 py-1 px-2 leading-tight focus:outline-none" id="file" type="file" placeholder="Username" />
 
@@ -224,7 +226,7 @@ export default function Upload({ user }) {
                   <div className="m-1 border-b border-green-900 p-1">
                     <progress value={progress1} max="100"> </progress>
 
-                    <label className="block text-gray-700 text-sm font-bold my-1 mx-1 py-2 px-1 " >
+                    <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif" >
                       Upload App Logo
                     </label>
                     <input onChange={handelChange1} className="appearance-none bg-transparent border-none  text-gray-900 mr-3 py-1 px-2 leading-tight focus:outline-none" id="file" type="file" placeholder="App Logo" />
@@ -247,7 +249,7 @@ export default function Upload({ user }) {
                   <div className="m-1 border-b border-green-900 p-1">
                     <progress value={progress2} max="100"> </progress>
 
-                    <label className="block text-gray-700 text-sm font-bold my-1 mx-1 py-1 px-1 " >
+                    <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif" >
                       Upload App Image
                     </label>
                     <input onChange={handelChange2} className="appearance-none bg-transparent border-none  text-gray-900 mr-3 py-1 px-2 leading-tight focus:outline-none" id="file" type="file" placeholder="App Image" />
@@ -276,7 +278,7 @@ export default function Upload({ user }) {
                     <div className=" flex flex-col sm:flex-row gap-2 ">
                       <div className="px-1 border-b border-green-900 lg:w-1/2">
 
-                        <label className="block text-gray-700 text-sm font-bold my-1 mx-1 py-1 px-1 " value={appname} onChange={(e) => setappname(e.target.value)}>
+                        <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif" value={appname} onChange={(e) => setappname(e.target.value)}>
                           App Name
                         </label>
                         <textarea
@@ -288,7 +290,7 @@ export default function Upload({ user }) {
                       </div>
                       <div className="px-1 border-b border-green-900 lg:w-1/2">
 
-                        <label className="block text-gray-700 text-sm font-bold my-1 mx-1 py-1 px-1 ">
+                        <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif">
                           App Description
                         </label>
                         <textarea
@@ -304,7 +306,7 @@ export default function Upload({ user }) {
                     <div className=" flex flex-col sm:flex-row gap-2 p-2">
                       <div className="px-1 border-b border-green-900 lg:w-1/2">
 
-                        <label className="block text-gray-700 text-sm font-bold my-1 mx-1 py-1 px-1 " value={appname} onChange={(e) => setappname(e.target.value)}>
+                        <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif" value={appname} onChange={(e) => setappname(e.target.value)}>
                           Category
                         </label>
                         <div className="relative">
@@ -326,30 +328,50 @@ export default function Upload({ user }) {
                       </div>
                       <div className="px-1 border-b border-green-900 lg:w-1/2">
 
-                        <label className="block text-gray-700 text-sm font-bold my-1 mx-1 py-1 px-1 ">
+                        <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif">
                           Url Of Privacy Policy
                         </label>
                         <input type="text"
                           value={privacy} onChange={(e) => setprivacy(e.target.value)}
-                          className="form-textarea mt-1 block w-full"
+                          className="form-textarea mt-1 block w-full py-1"
                           rows="3"
                           placeholder="Url."
                         ></input>
                       </div>
                       <div className="px-1 border-b border-green-900 lg:w-1/2">
 
-                        <label className="block text-gray-700 text-sm font-bold my-1 mx-1 py-1 px-1 ">
+                        <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif">
                           App Version
                         </label>
                         <input type="text"
                           value={version} onChange={(e) => setversion(e.target.value)}
-                          className="form-textarea mt-1 block w-full"
+                          className="form-textarea mt-1 block w-full py-1"
                           rows="3"
                           placeholder="App Version."
                         ></input>
                       </div>
 
 
+                    </div>
+                    <div className='my-1 p-1 flex justify-center'>
+                      <div className="px-1 border-b border-green-900 lg:w-1/2  ">
+
+                        <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif">
+                          Do You Want Marketing For this App
+                        </label>
+                        <div className='relative'>
+                          <select value={Marketing} onChange={(e) => setMarketing(e.target.value)} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                            <option>Select One</option>
+                            <option>Yes</option>
+                            <option>No</option>
+
+                          </select>
+
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div className="px-1  flex w-full justify-center">
                       <Slide right>

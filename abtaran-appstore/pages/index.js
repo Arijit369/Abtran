@@ -26,11 +26,12 @@ const hideFilter = () => {
   setshowFilter(false)
 }
   return (
-    <div className='h-auto'><Banner /><div className="mb-3">
+    <div className='h-auto'><div className="mb-3">
       {/* <h1 onClick={() => changeFilter('engineering')}>next</h1> */}
       <nav className="relative  nv ">
         <div className="flex p-2 px-10 sm:px-20 text-2xl whitespace-rowrap space-x-10 sm:space-x-20 overflow-x-scroll scrollbar-hide">
           <h2 className="cursor-pointer font-serif transition duration-100 transform hover:scale-125 hover:text-red-300 text-gray-200 hover:font-bold active:text-red-500" onClick={hideFilter}>Home</h2>
+          <Link href="/Screens/Latest"><a><h2 className="cursor-pointer font-serif transition duration-100 transform hover:scale-125  hover:text-red-300 text-gray-200 hover:font-bold active:text-red-500">Latest</h2></a></Link>
           <h2 className="cursor-pointer font-serif transition duration-100 transform hover:scale-125 hover:text-red-300 text-gray-200 hover:font-bold active:text-red-500" onClick={() => changeFilter('Shoping')}>Shoping</h2>
           <h2 className="cursor-pointer font-serif transition duration-100 transform hover:scale-125 hover:text-red-300 text-gray-200 hover:font-bold active:text-red-500" onClick={() => changeFilter('Music')}>Music</h2>
           <h2 className="cursor-pointer font-serif transition duration-100 transform hover:scale-125 hover:text-red-300 text-gray-200 hover:font-bold active:text-red-500" onClick={() => changeFilter('Gaming')}>Gaming</h2>

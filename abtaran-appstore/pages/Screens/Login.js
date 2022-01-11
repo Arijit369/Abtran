@@ -11,10 +11,15 @@ export default function Login() {
   const [alert , setalert]=useState('')
   const [password,SetPassword]=useState('')
   const [Warning , setWarning]=useState('')
- 
+  const [rating, setrating] = useState(0)
+
+   // radio
+   const changeRating = (e) => {
+    setrating(e.target.value)
+  }
   const handleSubmit=async (e)=>{
     e.preventDefault()
-    if( !email || !password ){
+    if( !email || !password ||!rating){
       setalert('Please Enter All The Feilds')
 
   }else{
@@ -89,7 +94,7 @@ try{
             <div className="flex items-center">
                 <input
                   value="thanks"
-                 
+                  onChange={changeRating}
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
