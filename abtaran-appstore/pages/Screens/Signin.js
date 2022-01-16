@@ -11,10 +11,15 @@ export default function Signin() {
   const [alert , setalert]=useState('')
   const [password,SetPassword]=useState('')
   const [Warning , setWarning]=useState('')
- 
-  const Submit=async (e)=>{
+  const [rating, setrating] = useState(0)
+
+   // radio
+   const changeRating = (e) => {
+    setrating(e.target.value)
+  }
+  const handleSubmit=async (e)=>{
     e.preventDefault()
-    if(!password || !email ){
+    if( !email || !password ||!rating){
       setalert('Please Enter All The Feilds')
 
   }else{
@@ -23,6 +28,7 @@ try{
   const result =await auth.signInWithEmailAndPassword(email,password)
 
   window.alert(`welcome back ${result.user.displayName} good to have you back`);
+ 
   router.push("/User/Add_Profile")
 }catch(err){
   // window.alert(err.message);
@@ -74,7 +80,7 @@ try{
          
         </div>
         <Slide right>
-        <form className=" p-3 w-full" action="#"  onSubmit={(e)=>Submit(e)}>
+        <form className=" p-3 w-full" action="#"  onSubmit={(e)=>handleSubmit(e)}>
          
           <div className="rounded-md  -space-y-px p-5  ">
             <div className="mt-1">
@@ -88,7 +94,7 @@ try{
             <div className="flex items-center">
                 <input
                   value="thanks"
-                 
+                  onChange={changeRating}
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
@@ -97,6 +103,10 @@ try{
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                   Agree To Terms And Conditions
                 </label>
+              </div>
+
+              <div className="my-2 p-1 flex justify-center">
+                   <Link href="/Screens/Forgot"><a className='text-indigo-700 text-lg font-serif hover:underline hover:text-blue-700'>Forgot Password</a></Link>
               </div>
           </div>
     

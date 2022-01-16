@@ -45,7 +45,7 @@ const Delete =(id)=>{
 }
   return (
     <div>
-       <Slide top><div className="container text-white bg-gradient-to-r from-[#06202a] to-blue-400   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
+   <Slide top><div className="lg:container lg:sticky lg:top-28   z-20 md:container text-white nv bg-opacity-90   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
       <section className="text-gray-600 body-font">
         {Warning?<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
   <strong className="font-bold"></strong>
@@ -67,7 +67,7 @@ const Delete =(id)=>{
 
 <div className="bg-gray-100 p-3 rounded-lg">
 
-<Image className="h-40 rounded w-full object-cover object-center mb-6 hover:scale-125"
+<Image className="h-40 rounded w-full object-center mb-6 hover:scale-125"
     src={i.Image1?i.Image1:{upload}}
    
     alt="..."

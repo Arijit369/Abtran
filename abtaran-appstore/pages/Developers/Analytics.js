@@ -35,7 +35,7 @@ export default function Analytics({user}) {
   }
     return (
       <div>
-         <Slide top><div className="container text-white bg-gradient-to-r from-[#06202a] to-blue-400   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
+  <Slide top><div className="lg:container lg:sticky lg:top-28   z-20 md:container text-white nv bg-opacity-90   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
        <Slide bottom>  <section className="text-gray-600 body-font">
         <div className="container px-5 py-5 mt-2 mx-auto">
           <div className="flex flex-wrap w-full mb-5 ">
@@ -50,7 +50,7 @@ export default function Analytics({user}) {
  apps.map((i, index) => (
               <div className=" xl:w-1/4 lg:w-1/2 p-2" key={index}>
 
-<div className="bg-gray-100 p-3 rounded-lg">
+<div className="bg-gray-100 p-3 rounded-lg ">
 
 <Image className="h-40 rounded w-full object-cover object-center mb-6 hover:scale-125"
     src={i.Image1?i.Image1:{upload}}

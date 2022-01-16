@@ -6,16 +6,17 @@ import { HomeIcon, LogoutIcon,LightBulbIcon, LightningBoltIcon } from '@heroicon
 import {auth} from '../firebase'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Banner from './Banner'
 function Header({user}) {
   const [warning , setwarning]=useState('')
   const router=useRouter()
     return (
-        <>
-            <header className="flex  bg-opacity-90  items-center head sticky  animated top-0 w-full  shadow-lg">
+        <div className='head bg-opacity-90 sticky  animated top-0 w-full'>
+            <header className="flex  m-0 items-center">
          <div className="flex flex-grow">
-         <Image
+         <Link href="/"><a><Image
     className="object-contain m-1 "
-src={logo} alt="" height={50} width={85}/>
+src={logo} alt="" height={50} width={85}/></a></Link>
 
          </div>
             <div className="flex flex-grow justify-end gap-5 lg:gap-10 md:gap-8 sm:gap-6  text-center ">
@@ -55,12 +56,13 @@ src={logo} alt="" height={50} width={85}/>
     
 
             </header>
-           {warning?<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center font-serif text-xl" role="alert">
+           {warning?<div className="bg-red-300 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center font-serif text-xl" role="alert">
   <strong className="font-bold"></strong>
   <span className="block sm:inline text-center">{warning}</span>
   
 </div>:<></>}
-            </>
+<Banner/>
+            </div>
    
     )
 }

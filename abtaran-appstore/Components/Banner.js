@@ -1,11 +1,9 @@
 
-import Image from 'next/image'
 
-import Link from 'next/link'
 
 export default function Banner() {
     return (
-        <header className="flex flex-col sm:flex-row bg-opacity-80  justify-between items-center banner animated w-full">
+        <header className="flex flex-col m-0 lg:sticky z-20 top-16 sm:flex-row  justify-between items-center  animated w-full">
       
     
 

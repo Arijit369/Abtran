@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import {db} from '../../firebase'
+import {db, serverTimestamp} from '../../firebase'
 import { useEffect , useState } from 'react'
-import { DownloadIcon, ViewGridIcon } from '@heroicons/react/outline'
+import { DownloadIcon,  ViewGridIcon,  ViewListIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import Itemicons from '../../Components/Itemicons'
 import Slide from 'react-reveal/Slide'
@@ -11,7 +11,8 @@ export default function Apps_filter(props) {
   useEffect(() => {
     const getPostsFromFirebase = [];
   const subscriber = db
-    .collection("Approved").where("Category",'>=',props.filtername).where("Category",'<=',props.filtername).orderBy("Category","desc")
+    // .collection("Approved").where("Category",'>=',props.filtername).where("Category",'<=',props.filtername).orderBy("Category","desc")
+    .collection("Approved").where("Category",'==',props.filtername)
     .onSnapshot((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         getPostsFromFirebase.push({
@@ -30,8 +31,16 @@ export default function Apps_filter(props) {
     return () => subscriber();
   }, [apps, props.title]); 
   if (loading) {
-    return<div className="  h-screen p-12 animate-pulse  text-center bg-opacity-50 bg-indigo-700 text-white font-bold text-xl mb-2">Loading... please waiit</div>
+    return<div className="h-full p-5 flex justify-center"><p className='text-center text-xl font-serif font-bold tracking-widest'>Please Wait Loading Content</p></div>
   ;
+  }
+  // download the app
+
+  const Appdownload=async(id)=>{
+    await db.collection('Approved').doc(id).collection('downloads').add({
+      text: 1,
+      time:serverTimestamp()
+    })
   }
   return (
 
@@ -53,16 +62,16 @@ export default function Apps_filter(props) {
           </svg>&nbsp;Back</button>
         </div>
       </div>
-      <div className="sm:grid md:grid-cols-2 xl:grid-cols-4 gap-2 md:gap-5 lg:gap-2 md:space-x-5 lg:space-x-0  p-1 ">
+      <div className="sm:grid md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5 lg:gap-2 md:space-x-5 lg:space-x-0  lg:py-1 lg:px-7 p-1">
         {/* fetch start */}
         {
           apps.map((i, index) => (
-           
-        <div className="h-auto md:w-80 mx-1 my-4 md:my-1 sm:my-1   cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50 rounded-lg p-2 bg-white shadow-lg " key={index}>
-
-          <div className="w-full aspect-w-1 aspect-h-1  overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-          <Link href={`/Screens/${i.id}`}><a><Image src={i.Image1} alt="Hand holding black machined steel mechanical pencil with brass tip and top." className="w-full h-full object-center object-cover group-hover:opacity-75 rounded-t-lg" height={1000} width={1920} layout="responsive" /></a></Link>
-          </div>
+            
+            <div className="h-auto lg:w-72 mx-1 my-4 md:my-1  sm:my-1 shadow-lg  cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50 rounded-lg head " key={index}>
+   
+   <div className="w-full aspect-w-1 aspect-h-1  overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+   <Link href={`/Screens/${i.id}`}><a><Image src={i.Image1} alt={i.Appname} className=" object-center  group-hover:opacity-75 rounded-t-lg" height={300} width={520} layout="responsive" /></a></Link>
+   </div>
 
           <div className="links rounded-b-lg">
             <div className="text-center p-1">
@@ -70,7 +79,7 @@ export default function Apps_filter(props) {
             </div>
             <div className="flex  sm:flex-row justify-between ">
             <Link href={`/Screens/${i.id}`}><a> <Itemicons Icon={ViewGridIcon} /></a></Link>
-            <a href={i.Apk_File}><Itemicons Icon={DownloadIcon} /></a>
+            <a href={i.Apk_File} onClick={()=>Appdownload(`${i.id}`)}><Itemicons Icon={DownloadIcon} /></a>
             </div>
           </div>
 

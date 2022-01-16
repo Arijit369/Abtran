@@ -48,12 +48,12 @@ router.push("/Admin/Approve")
             <div className="container mx-auto lg:my-6   py-1 lg:py-10  lg:px-12 px-2 flex gap-5 flex-col lg:flex-row ">
             <div className="lg:w-1/2  ">
 
-            <Image className="rounded object-center object-cover   hover:scale-125 "
+            <Image className="rounded object-center    hover:scale-125 "
     src={app.Image1}
    
     alt="..."
-  height="400"
-  width="590"
+  height="350"
+  width="500"
   ></Image>
   {/* <div className=" h-24"></div> */}
 
@@ -61,6 +61,7 @@ router.push("/Admin/Approve")
             <div className=" lg:w-1/2 sm:max-w-full ">
 
             <h1 className="text-center p-3 text-gray-800 font-serif font-bold text-3xl underline">{app.Appname}</h1>
+            <h1 className="text-center p-3 text-gray-800 font-serif font-bold text-xl underline"><span>Marketing Status</span>{app.Marketing}</h1>
             <h1 className="text-center px-3 my-1 text-gray-800 font-mono font-bold text-xl ">Category:-{app.Category}&nbsp;&nbsp;&nbsp;PostedBy:{app.Name}</h1>
             <h1 className="text-center px-3 my-1 text-gray-800 font-mono font-bold text-sm ">{app.Privacy_Policy}</h1>
             <h1 className="text-justify px-3 text-gray-800 font-mono font-bold text-sm ">Description:-{app.Description}</h1>

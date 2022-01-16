@@ -25,7 +25,7 @@ export default function Profile({user}) {
   
     return (
       <div className="container mx-auto ">
-         <Slide top><div className="container text-white bg-gradient-to-r from-[#06202a] to-blue-400   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
+       <Slide top><div className="lg:container lg:sticky lg:top-28  z-20 md:container text-white nv bg-opacity-90   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
       
       <h3 className="text-2xl font-bold leading-6 lg:mx-10 my-2 text-center text-gray-900 font-serif">Your Information</h3>
            
