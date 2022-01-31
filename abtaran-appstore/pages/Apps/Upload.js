@@ -7,6 +7,8 @@ import { db, serverTimestamp, storage } from '../../firebase'
 
 
 export default function Upload({ user }) {
+  const [loading, setLoading] = useState(true);
+  const [cat, setcat] = useState([])
   const [alert, setalert] = useState('')
 
   // varialbles for app upload
@@ -31,6 +33,8 @@ export default function Upload({ user }) {
   const [category, setcategory] = useState('')
   const [privacy, setprivacy] = useState('')
   const [Marketing, setMarketing] = useState('')
+  const [Audience , setAudience]=useState('')
+  const [language , setlanguage ]=useState('')
   // variables for desc
   //  app upload starts
   const handelChange = (e) => {
@@ -142,7 +146,7 @@ export default function Upload({ user }) {
   // image2 upload ends
   // upload appps with des c
   const SubmitDetails = async () => {
-    if (!category || !appname || !desc || !privacy || !version || !Marketing) {
+    if (!category || !appname || !desc || !privacy || !version || !Marketing ||!Audience ||!language) {
       setalert('Please Enter All Fields')
 
     } else {
@@ -158,7 +162,10 @@ export default function Upload({ user }) {
           Image2: url2,
           Version: version,
           Name: user.displayName,
+          Email:user.email,
           Marketing: Marketing,
+          Language:language,
+          Audience:Audience,
           Userid: user.uid,
 
           UpdatedAt: serverTimestamp()
@@ -178,13 +185,37 @@ export default function Upload({ user }) {
 
 
   }
+  // all categorries
+  useEffect(() => {
+    const getPostsFromFirebase = [];
+    const subscriber = db
+      .collection("Category").orderBy("Category" , "desc")
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          getPostsFromFirebase.push({
+            ...doc.data(), //spread operator
+            id: doc.id, // `id` given to us by Firebase
+          });
+        });
+        setcat(getPostsFromFirebase);
+        setLoading(false);
 
+
+      });
+
+    // return cleanup function
+    return () => subscriber();
+  }, [cat, loading]);
+  if (loading) {
+    return <></>
+      ;
+  }
 
 
   return (
     <div>
 
-<Slide top><div className="lg:container lg:sticky lg:top-28  z-20 md:container text-white nv bg-opacity-90   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
+      <Slide top><div className="lg:container lg:sticky lg:top-28  z-20 md:container text-white nv bg-opacity-90   font-serif text-lg lg:text-xl md:text-xl font-semibold p-5 uppercase flex flex-row justify-center "><h1>Welcome {user.displayName}</h1></div></Slide>
       <Fade>
         <div className=" container p-2 ">
           <h1 className="text-gray-800 font-bold font-serif italic text-3xl text-center">Upload App From Here</h1>
@@ -312,14 +343,10 @@ export default function Upload({ user }) {
                         <div className="relative">
                           <select value={category} onChange={(e) => setcategory(e.target.value)} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                             <option>Select One</option>
-                            <option>Shoping</option>
-                            <option>Gaming</option>
-                            <option>Music</option>
-                            <option>Education</option>
-                            <option>Entertainment</option>
-                            <option>Art</option>
-                            <option>Payment</option>
-                            <option>Add More Category</option>
+                            {
+                              cat.map((i, index) => (<>
+                                <option key={index}>{i.Category}</option>
+                              </>))}
                           </select>
                           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
@@ -343,7 +370,7 @@ export default function Upload({ user }) {
                         <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif">
                           App Version
                         </label>
-                        <input type="text"
+                        <input type="number"
                           value={version} onChange={(e) => setversion(e.target.value)}
                           className="form-textarea mt-1 block w-full py-1"
                           rows="3"
@@ -353,17 +380,20 @@ export default function Upload({ user }) {
 
 
                     </div>
-                    <div className='my-1 p-1 flex justify-center'>
+                    <div className='my-1 p-1 flex flex-row justify-center'>
                       <div className="px-1 border-b border-green-900 lg:w-1/2  ">
 
                         <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif">
-                          Do You Want Marketing For this App
+                         Type Of Content For Marketing
                         </label>
                         <div className='relative'>
                           <select value={Marketing} onChange={(e) => setMarketing(e.target.value)} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                             <option>Select One</option>
-                            <option>Yes</option>
-                            <option>No</option>
+                            <option>Blog</option>
+                            <option>Poster</option>
+                            <option>Video</option>
+                            <option>All Of These</option>
+                            <option>None Of These</option>
 
                           </select>
 
@@ -372,7 +402,50 @@ export default function Upload({ user }) {
                           </div>
                         </div>
                       </div>
+
+                      <div className="px-1 border-b border-green-900 lg:w-1/2  ">
+
+                        <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif">
+                         Type Of Audience
+                        </label>
+                        <div className='relative'>
+                          <select value={Audience} onChange={(e) => setAudience(e.target.value)} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                            <option>Select One</option>
+                            <option>Local</option>
+                            <option>National</option>
+                            <option>International</option>
+                            <option>All Of These</option>
+                            <option>None Of These</option>
+                          </select>
+
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                    <div className='my-1 p-1 flex flex-row justify-center'>
+                      <div className="px-1 border-b border-green-900 lg:w-1/2  ">
+
+                        <label className="block text-gray-700 text-lg font-bold my-1 mx-1 py-1 px-1 font-serif">
+                         Type Of Language For Marketing
+                        </label>
+                        <div className='relative'>
+                          <select value={language} onChange={(e) => setlanguage(e.target.value)} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                            <option>Select One</option>
+                            <option>Hindi</option>
+                            <option>English</option>
+                            <option>All Of These</option>
+                            <option>None Of These</option>
+
+                          </select>
+
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
                     <div className="px-1  flex w-full justify-center">
                       <Slide right>
                         <button onClick={SubmitDetails} className="bg-blue-500 hover:bg-blue-600 text-white font-serif font-semibold hover:text-white h-12 mt-10 py-3 border px-3 mx-2 border-blue-500 hover:border-transparent rounded flex">

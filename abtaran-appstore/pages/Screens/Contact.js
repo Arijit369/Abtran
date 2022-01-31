@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { db } from "../../firebase"
 import { useRouter } from "next/router"
+import Footer from "../../Components/Footer"
 export default function Contact() {
   const [name, setname] = useState('')
   const [email, setemail] = useState('')
@@ -74,11 +75,11 @@ export default function Contact() {
             <button onClick={Submit} className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg flex justify-center">Submit&nbsp;<svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg></button>
-            <p className="text-xs text-gray-500 mt-3">Your Data is Important to us. We Care About Your Privacy .</p>
+            <p className="text-xs text-gray-500 mt-3"></p>
           </div>
         </div>
       </section>
-
+     <Footer/>
     </div>
   )
 }

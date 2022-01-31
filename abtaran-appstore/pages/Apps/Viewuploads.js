@@ -55,10 +55,10 @@ const Delete =(id)=>{
       <Slide bottom>  <div className="container px-5 py-5 mt-2 mx-auto">
           <div className="flex flex-wrap w-full mb-5 ">
             <div className="lg:w-1/2 w-full  lg:mb-0 ">
-              <h1 className="sm:text-3xl font-serif text-2xl font-medium title-font mb-2 text-gray-900">All Your Uploaded Apps Are Here After Test </h1>
+              <h1 className="sm:text-3xl font-serif text-xl font-medium title-font mb-2 text-gray-900">All Your Uploaded Apps Are Here After security and review </h1>
               <div className="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
-            <p className="lg:w-1/2 w-full font-serif leading-relaxed text-justify text-gray-500">From Here You Can Delete App And Check Your Apps Which Are Uploaded To The Abtaran Appstore </p>
+            <p className="lg:w-1/2 w-full font-serif leading-relaxed text-justify text-gray-500">From here, you can check and delete your apps, which are uploaded on Abtaran App Store </p>
           </div>
           <div className="flex flex-wrap -m-5 my-3 ">
           {

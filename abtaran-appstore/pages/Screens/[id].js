@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Slide from 'react-reveal/Slide'
 import Footer from '../../Components/Footer'
-
+import validator from 'validator'
 import { useRouter } from "next/router"
 // import { db , serverTimestamp } from "../../firebase";
 import { db , serverTimestamp} from "../../firebase"
@@ -9,6 +9,7 @@ import Image from 'next/image'
 
 export default function Viewpage({ app, user, allComments, alldownloads, alllikes }) {
   const router = useRouter()
+  const [double, setDouble] = useState(false);
   const { id } = router.query
   const [AllComments, setAllComments] = useState(allComments)
   const [myComment, setMyComment] = useState('')
@@ -18,11 +19,15 @@ export default function Viewpage({ app, user, allComments, alldownloads, alllike
   // varibles for alerts
   const [Alert, setAlert] = useState('')
   const [alert, setalert] = useState('')
-  const Approve = async () => {
-    if (!Email || !myComment) {
-      setalert('Please Enter All Fields ! Fields Cannot Be Empty')
+  const [executing, setExecuting] = useState(false);
 
-    } else {
+   
+  const Approve = async () => {
+
+    if (!Email || !myComment  ) {
+      setalert(' Fields Cannot Be Empty ')
+
+    } else if(validator.isEmail(Email)){
       await db.collection('Approved').doc(id).collection('comments').add({
         text: myComment,
         email: Email,
@@ -33,6 +38,12 @@ export default function Viewpage({ app, user, allComments, alldownloads, alllike
       window.location.reload(false);
       const commentQuery = await db.collection('Approved').doc(id).collection('comments').get()
       setAllComments(commentQuery.docs.map(docSnap => docSnap.data()))
+    }
+    
+    
+    else {
+      setalert("Enter Valid Email")
+    
     }
   }
   // downloads
@@ -54,7 +65,7 @@ export default function Viewpage({ app, user, allComments, alldownloads, alllike
       time:serverTimestamp()
     })
     setAlert("Thankyou For Valuable Like")
-
+    setDouble(true);
     const like = await db.collection('Approved').doc(id).collection('Likes').get()
     setAlllike(like.docs.map(docSnap => docSnap.data()))
 
@@ -77,7 +88,7 @@ export default function Viewpage({ app, user, allComments, alldownloads, alllike
       {/* alert end */}
       {/* downloads */}
       {/* comments */}
-      <Slide left>
+      <Slide top>
         <div className="  flex lg:flex-row flex-col  lg:p-10 md:p-8 sm:p-5 p-4  justify-between gap-5">
 
           <div className="comments p-2 lg:w-4/12 my-1  overflow-y-auto h-40 rounded-md shadow-md bg-gradient-to-br from-yellow-400 to-red-500 ">
@@ -146,18 +157,19 @@ export default function Viewpage({ app, user, allComments, alldownloads, alllike
           <div className="bg-white p-2 lg:w-2/6 lg:h-96 lg:mt-10 mt-1 rounded-lg shadow-lg ">
             <h1 className="text-center p-3 text-gray-800 font-serif font-bold text-3xl underline">{app.Appname}</h1>
             <h1 className="flex  flex-col text-center justify-center px-3 my-1 text-gray-500  font-bold text-xl font-serif ">PostedBy:{app.Name}</h1>
+            <h1 className="text-center px-3 my-1 text-gray-500 font-mono font-bold text-sm  ">Email:{app.email}</h1>
             <h1 className="text-center px-3 my-1 text-gray-500 font-mono font-bold text-sm  ">Uploaded On:{app.UpdatedAt}</h1>
             {/* like and comments */}
             {user ? <><h1 className="text-center font-mono font-bold  text-2xl my-7 ">you  cannot download or comment on apps</h1>
             </> : <><div className="container  flex   items-center justify-between mx-auto  my-10  p-2">
 
 
-              <a href={app.Apk_File}> <button onClick={Download} className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 font-serif px-2 lg:mx-6 md:mx-10 rounded flex justify-center">
+              <a href={app.Apk_File}> <button onClick={Download}  className="bg-blue-500 hover:bg-green-500 text-white font-bold py-2 font-serif px-2 lg:mx-6 md:mx-10 rounded flex justify-center">
                 Download &nbsp;<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               </button></a>
-              <button onClick={Likes} className=" hover:text-blue-500 font-serif text-green-500 hover:animate-bounce font-bold  lg:mx-4 md:mx-10 ml-4  rounded flex">
+              <button onClick={Likes } disabled={double} className=" hover:text-green-500 font-serif text-blue-500  font-bold  lg:mx-4 md:mx-10 ml-4  rounded flex">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-9 w-9" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
                 </svg>
@@ -168,7 +180,7 @@ export default function Viewpage({ app, user, allComments, alldownloads, alllike
               <div className=" flex flex-row gap-3 my-10 p-2 justify-between  ">
                 <div className="md:w-1/4 mx-1">
                   <input value={Email}
-                    onChange={(e) => setEmail(e.target.value)} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="email" placeholder="Email Address" />
+                    onChange={(e) => setEmail(e.target.value)} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="email" required placeholder="Email Address" />
                 </div>
                 <div className="md:w-2/4 mx-1">
                   <input value={myComment}
@@ -182,7 +194,7 @@ export default function Viewpage({ app, user, allComments, alldownloads, alllike
           </div>
         </Slide>
         {/* privacy policy and description block */}
-        <Slide right>
+        <Slide top>
           <div className="bg-white p-3  lg:w-2/6 rounded-lg overflow-y-auto   ">
             <h1 className="text-justify px-3 py-3 text-gray-800 font-serif text-3xl "><strong className="font-serif">Version:</strong>{app.version}</h1>
             <h1 className="text-justify px-3 py-3 text-gray-800 font-serif text-xl "><strong className="font-serif">Description:</strong>{app.Description}</h1>
