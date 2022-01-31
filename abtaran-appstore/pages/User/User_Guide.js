@@ -1,9 +1,32 @@
 import Image from 'next/image'
 import Untitled from '../../Components/images/Untitled.png'
-
+import Footer from '../../Components/Footer'
 export default function User_Guide() {
     return (
-        <section className="text-gray-600 body-font">
+        <><section className="text-gray-600 body-font">
+          <div className='  p-2 '>
+            <div className='p-2'><h1 className='font-serif text-xl text-gray-900 font-bold'>Important Links</h1></div>
+            <div className='flex lg:flex-row flex-col justify-center items-center gap-3 p-2 lg:container mx-auto '>
+            <div className='lg:w-1/2  p-2 flex justify-center items-center'>
+            <ul className="list-none md:list-disc p-2" >
+                  <li><a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1Nah_PJ-EOq9QntFU9uNOVi4K0COWkRFN/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">1.Welcome Document</a></li>
+                  <li><a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1G9RcGtFAK4eSSG2n8QV4gfIi2kMfk5wK/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">2.How to download and install apps from Abtaran</a></li>
+                  <li><a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1NkGyUPuYMhpY7KHahb6ljSTgXJBuHp1y/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">3.Abtaran App Store Reward Program -process</a></li>
+            
+            </ul>
+            </div>
+            <div className='lg:w-1/2  p-2 flex justify-center items-center'>
+            <ul className="list-none md:list-disc p-2">
+              <li><a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/10mhu92FnbJz-L1M0Sj90JN_fRAGGJpkY/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">4.Abtaran App Store Reward Program- Rules and Guidelines</a></li>
+              <li><a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1zfJhrKC21aBUXxkpKl2D9-lrnmSio6hw/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">5.Our NFTs, your crypto earning opportunity</a></li>
+              <li><a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1zfJhrKC21aBUXxkpKl2D9-lrnmSio6hw/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">6.Our NFTs, your crypto earning opportunity</a></li>
+              <li><a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1cwfY8eBLSpwDrUWKU_wAHQKmITLwAIa2/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">7.Endnote</a></li>
+
+            </ul>
+            </div>
+            </div>
+
+          </div>
         <div className="container  px-5 py-5 mx-auto flex flex-wrap">
           <div className="flex flex-wrap w-full lg:gap-16 justify-center ">
             <div className="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6 lg:mx-20 ">
@@ -18,9 +41,9 @@ export default function User_Guide() {
                 </div>
                 <div className="flex-grow pl-4">
                   <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">STEP 1</h2>
-                  <p className="leading-relaxed flex flex-row ">Click On Button . It Will Download The Desired Apk For You <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-</svg> </p>
+                  <p className="leading-relaxed flex flex-row ">Click On Button.It Will Download The Desired Apk For You <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg> </p>
                 </div>
               </div>
               <div className="flex relative pb-12">
@@ -83,6 +106,18 @@ export default function User_Guide() {
             <Image className=" object-cover object-center  px-2 " src={Untitled} alt="step" height="400" width="470" layout="fixed" />
           </div>
         </div>
-      </section>
+{/* <div className=' p-5'>
+ <h1 className='text-black text-2xl font-bold font-serif'>Other Important Links </h1>
+
+ <a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1Nah_PJ-EOq9QntFU9uNOVi4K0COWkRFN/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">Welcome Document</a><br/>
+ <a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1G9RcGtFAK4eSSG2n8QV4gfIi2kMfk5wK/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">How to download and install apps from Abtaran</a><br/>
+ <a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1NkGyUPuYMhpY7KHahb6ljSTgXJBuHp1y/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">Abtaran App Store Reward Program -process</a><br/>
+ <a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1YAYblKVAIQ0wnY53mva7t-ccH0l8VjrQ/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">Abtaran App Store Reward Program- Gifts for you to win</a><br/>
+ <a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/10mhu92FnbJz-L1M0Sj90JN_fRAGGJpkY/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">Abtaran App Store Reward Program- Rules and Guidelines</a><br/>
+ <a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1zfJhrKC21aBUXxkpKl2D9-lrnmSio6hw/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">Our NFTs, your crypto earning opportunity</a><br/>
+ <a target="_blank" className='text-blue-700 hover:text-blue-900 hover:underline text-xl font-serif' href="https://docs.google.com/document/d/1cwfY8eBLSpwDrUWKU_wAHQKmITLwAIa2/edit?usp=sharing&ouid=117317523790393786566&rtpof=true&sd=true">Endnote</a><br/>
+</div> */}
+
+      </section><Footer /></>
     )
 }

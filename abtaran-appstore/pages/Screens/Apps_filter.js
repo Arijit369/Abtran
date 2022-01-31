@@ -11,8 +11,8 @@ export default function Apps_filter(props) {
   useEffect(() => {
     const getPostsFromFirebase = [];
   const subscriber = db
-    // .collection("Approved").where("Category",'>=',props.filtername).where("Category",'<=',props.filtername).orderBy("Category","desc")
-    .collection("Approved").where("Category",'==',props.filtername)
+    .collection("Approved").where("Category",'>=',props.filtername).where("Category",'<=',props.filtername).orderBy("Category","desc")
+    // .collection("Approved").where("Category",'==',props.filtername)
     .onSnapshot((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         getPostsFromFirebase.push({
@@ -62,15 +62,14 @@ export default function Apps_filter(props) {
           </svg>&nbsp;Back</button>
         </div>
       </div>
-      <div className="sm:grid md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5 lg:gap-2 md:space-x-5 lg:space-x-0  lg:py-1 lg:px-7 p-1">
+      <div className="sm:grid md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-6 lg:gap-4 md:space-x-5 lg:space-x-0  lg:py-1 lg:px-7 p-1">
         {/* fetch start */}
         {
           apps.map((i, index) => (
             
-            <div className="h-auto lg:w-72 mx-1 my-4 md:my-1  sm:my-1 shadow-lg  cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50 rounded-lg head " key={index}>
-   
-   <div className="w-full aspect-w-1 aspect-h-1  overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-   <Link href={`/Screens/${i.id}`}><a><Image src={i.Image1} alt={i.Appname} className=" object-center  group-hover:opacity-75 rounded-t-lg" height={300} width={520} layout="responsive" /></a></Link>
+            <div className="h-auto lg:w-60  mx-1 my-4 md:my-1  sm:my-1  cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50 rounded-lg  " key={index}>
+  <div className="w-full aspect-w-1 aspect-h-1  overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+   <Link href={`/Screens/${i.id}`}><a><Image src={i.Image1} alt={i.Appname} className=" object-contain  group-hover:opacity-75 rounded-lg" height={300} width={520} layout='responsive' /></a></Link>
    </div>
 
           <div className="links rounded-b-lg">

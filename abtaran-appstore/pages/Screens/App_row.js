@@ -11,8 +11,8 @@ export default function App_row(props) {
   useEffect(() => {
     const getPostsFromFirebase = [];
     const subscriber = db
-      // .collection("Approved").where("Category","<=",props.title).where("Category",">=",props.title).orderBy("Category","desc")
-      .collection("Approved").where("Category", "==", props.title)
+      .collection("Approved").where("Category","<=",props.title).where("Category",">=",props.title).orderBy("Category","desc")
+      // .collection("Approved").where("Category", "==", props.title)
       .onSnapshot((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           getPostsFromFirebase.push({
@@ -47,6 +47,7 @@ export default function App_row(props) {
     <div className=" md:mx-auto h-auto relative  bg-gray-100  bg-opacity-50   ">
       {/* <p className="mx-2 font-serif text-2xl font-bold  underline" onClick={() => { props.changeState(props.title) }}>{props.title}</p>
          */}
+         {apps.length === 0?<></>:<>
       <Slide left>
         <div className="flex">
           <div className="container ">
@@ -76,10 +77,10 @@ export default function App_row(props) {
 
               <div key={index}>
 
-                <div className=" mx-2 my-1 md:my-2 xl:my-2 cursor-pointer   scale-125  hover:z-50  head  rounded-lg" >
+                <div className=" mx-2 my-1 md:my-2 xl:my-2 cursor-pointer   scale-125  hover:z-50    rounded-lg" >
 
 
-                  <Link href={`/Screens/${i.id}`}><a> <Image src={i.Image1} alt={i.Appname} className="object-center rounded-t-lg group-hover:opacity-75  hover:scale-105" height={120} width={180} layout='responsive' /></a></Link>
+                  <Link href={`/Screens/${i.id}`}><a> <Image src={i.Image1} alt={i.Appname} className="object-contain rounded-lg group-hover:opacity-75  " height={120} width={180} layout='responsive' /></a></Link>
 
 
                   <div className="links rounded-b-lg">
@@ -110,6 +111,7 @@ export default function App_row(props) {
 
         </div>
       </Slide>
+      </>}
     </div>
 
 

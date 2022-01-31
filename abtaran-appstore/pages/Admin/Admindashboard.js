@@ -1,7 +1,24 @@
+import { useState } from "react";
 import Login from "../Screens/Login";
 import Link from "next/link";
-
+import { db  } from "../../firebase"
 export default function Admindashboard({user}) {
+  const [cat , setcat]=useState("")
+  const [alert , setalert]=useState("")
+  const submit =async ()=>{
+   
+    try{
+          await db.collection('Category').add({
+              Category:cat,
+             
+          })
+          setalert('Category Added')
+    }catch(err){
+        console.log(err)
+    }
+
+    
+}
     return (
         <div >
      
@@ -145,8 +162,34 @@ export default function Admindashboard({user}) {
             {/* buttons end */}
 
           </div>
+
+          {/* add category */}
+
+          <div className="  p-2  lg:mx-5 mb-10 mt-3 lg:my-5 shadow-lg rounded-lg bg-blue-100 bg-opacity-80 hover:bg-blue-200">
+
+
+            {/* header */}
+            <div className="flex justify-center "><svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-6 mt-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            </svg>  <h1 className="mt-2 font-mono text-xl font-bold ">Add Category</h1></div>
+            {/* text */}
+            {alert?<h1 className="text-red-700">Category Added</h1>:<></>}
+            <input value={cat} onChange={(e)=>setcat(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Add Category"/>
+            {/* header */}
+            {/* buttons */}
+            <div className="flex flex-row  gap-3 mt-2 justify-center ">
+              <h1 onClick={submit} className="cursor-pointer text-center  font-mono text-sm  font-bold bg-red-200 hover:bg-red-300 px-2 py-3 rounded-lg">Add Category</h1>
+
+            </div>
+            {/* buttons end */}
+
+          </div>
           {/* ends */}
         </div>
+
+
+
+
       </div>
       </>:<>
       <Login/>

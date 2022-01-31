@@ -13,9 +13,9 @@ export default function Footer() {
   <div className="container px-5 py-3 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
       <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
-      <Image
+      <Link href="/"><a><Image
     className="object-contain m-1 "
-src={logo} alt="" height={50} width={85}/>
+src={logo} alt="" height={50} width={85}/></a></Link>
         <span className=" text-xl">Abtaran</span>
       </a>
       <p className="mt-1 text-sm text-gray-300 text-justify font-bold font-serif">Welcome To Abtaran App Store.&nbsp; Your Own App Store Made In India.</p>
@@ -29,12 +29,12 @@ src={logo} alt="" height={50} width={85}/>
           <Link href="/Developers/Dashboard"><a className="text-gray-400 hover:text-white">Developer Dashboard</a></Link>
           </li>
           <li>
-            <a className="text-gray-400 hover:text-white">Instructions</a>
+            <Link href="/Screens/Developers"><a className="text-gray-400 hover:text-white">Instructions For Developers</a></Link>
           </li>
          
        
           <li>
-        <Link href="/Screens/Coment"><a className="text-gray-400 hover:text-white ">Add Feedback</a></Link>
+        <Link href="/Screens/Coment"><a className="text-gray-400 hover:text-white ">Give Feedback</a></Link>
           </li>
         </nav>
       </div>
@@ -42,10 +42,10 @@ src={logo} alt="" height={50} width={85}/>
         <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">FOR USERS </h2>
         <nav className="list-none mb-10">
           <li>
-           <Link href="/User/User_Guide"><a className="text-gray-400 hover:text-white">Instructions</a></Link>
+           <Link href="/User/User_Guide"><a className="text-gray-400 hover:text-white">Instructions For Users</a></Link>
           </li>
           <li>
-          <Link href="/Screens/Coment"><a className="text-gray-400 hover:text-white">Add Feedback</a></Link>
+          <Link href="/Screens/Coment"><a className="text-gray-400 hover:text-white">Give Feedback</a></Link>
           </li>
           <li>
           <Link href="/Screens/Contact"><a className="text-gray-400 hover:text-white">Contact Us</a></Link>
@@ -57,10 +57,10 @@ src={logo} alt="" height={50} width={85}/>
         <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">ABOUT US AND MORE</h2>
         <nav className="list-none mb-10">
         <li>
-            <a className="text-gray-400 hover:text-white">Disclaimer</a>
+        <Link href="/Screens/TermsandConditions"><a className="text-gray-400 hover:text-white">Terms and Conditions</a></Link>
           </li>
           <li>
-            <a className="text-gray-400 hover:text-white">Privacy And Policy</a>
+            <Link href="/Screens/PrivacyPolicy"><a className="text-gray-400 hover:text-white">Privacy Policy</a></Link>
           </li>
           <li>
             <Link  href="/Screens/Aboutus"><a className="text-gray-400 hover:text-white">About Us</a></Link>
