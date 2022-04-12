@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+   
+    
+     .head{
+        @apply bg-[#06202a] text-gray-300 ;
+        
+         z-index: 20
+     }
+     
+     .nv{
+        @apply bg-[#06202a] text-gray-100 
+     }
+     
+  
+head.scrolled {
+        @apply shadow-2xl;
+        
+       
+    }
+    .links{
+        @apply bg-[#06202a] text-gray-300 
+    }
+    .banner{
+        @apply bg-[#06202a] text-gray-300 
+    }
+    .footer{
+        @apply bg-[#06202a] text-gray-300 ;
+        
+        
+     }
+   
+}
